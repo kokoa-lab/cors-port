@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 25% 97%;
+    --foreground: 220 40% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 13%;
+
+    --primary: 220 60% 20%;
+    --primary-foreground: 45 60% 90%;
+
+    --secondary: 45 50% 55%;
+    --secondary-foreground: 220 60% 12%;
+
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 45 70% 55%;
+    --accent-foreground: 220 60% 12%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 60% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --stamp-red: 0 75% 45%;
+    --stamp-green: 145 65% 35%;
+    --gold: 45 80% 55%;
+    --gold-light: 45 70% 75%;
+    --navy: 220 60% 20%;
+    --navy-light: 220 40% 35%;
+    --sky: 200 70% 90%;
+
+    --border: 220 20% 85%;
+    --input: 220 20% 85%;
+    --ring: 220 60% 20%;
+
+    --radius: 0.5rem;
+
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 30% 8%;
+    --foreground: 220 15% 90%;
+    --card: 220 30% 12%;
+    --card-foreground: 220 15% 90%;
+    --popover: 220 30% 12%;
+    --popover-foreground: 220 15% 90%;
+    --primary: 45 60% 60%;
+    --primary-foreground: 220 40% 10%;
+    --secondary: 220 30% 20%;
+    --secondary-foreground: 220 15% 85%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 45 70% 55%;
+    --accent-foreground: 220 40% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 45 60% 60%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .passport-card {
+    @apply rounded-lg border-2 border-accent/50 bg-card shadow-lg;
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(var(--gold) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--navy) / 0.03) 0%, transparent 50%);
+  }
+
+  .stamp {
+    @apply inline-flex items-center justify-center rounded-full border-4 font-mono text-sm font-bold uppercase tracking-widest;
+    transform: rotate(-12deg);
+  }
+
+  .stamp-approved {
+    @apply stamp;
+    border-color: hsl(var(--stamp-green));
+    color: hsl(var(--stamp-green));
+  }
+
+  .stamp-denied {
+    @apply stamp;
+    border-color: hsl(var(--stamp-red));
+    color: hsl(var(--stamp-red));
+  }
+
+  .terminal-box {
+    @apply rounded-lg border bg-foreground/5 p-4 font-mono text-sm;
+  }
+
+  .gold-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    color: hsl(var(--navy));
+  }
+
+  .runway {
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(var(--muted-foreground) / 0.3) 0px,
+      hsl(var(--muted-foreground) / 0.3) 30px,
+      transparent 30px,
+      transparent 60px
+    );
+    height: 4px;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  .bg-navy {
+    background-color: hsl(var(--navy));
+  }
+  .bg-navy-light {
+    background-color: hsl(var(--navy-light));
+  }
+  .text-stamp-red {
+    color: hsl(var(--stamp-red));
+  }
+  .text-stamp-green {
+    color: hsl(var(--stamp-green));
+  }
+  .border-stamp-red {
+    border-color: hsl(var(--stamp-red));
+  }
+  .border-stamp-green {
+    border-color: hsl(var(--stamp-green));
+  }
+  .bg-sky-zone {
+    background-color: hsl(var(--sky));
+  }
+}
